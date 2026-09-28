@@ -1,0 +1,14 @@
+# Render 一键部署配置（免费 Web 服务，自动分配公开 HTTPS 地址）
+# 在 Render 创建服务时选择「Deploy from a Git repository」并指向本仓库即可自动识别。
+services:
+  - type: web
+    name: health-manager-sync
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8080"
+      - key: SYNC_DATA_DIR
+        value: /app/sync-data

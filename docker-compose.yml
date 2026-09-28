@@ -1,0 +1,23 @@
+# 健康管家同步后端 —— Docker 一键部署
+# 用法：
+#   docker compose up -d --build     启动（后台）
+#   docker compose ps                查看状态
+#   docker compose logs -f           查看日志
+#   docker compose down              停止并移除容器（数据卷保留）
+services:
+  health-sync:
+    build: .
+    image: health-manager-sync:latest
+    container_name: health-sync
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - SYNC_DATA_DIR=/app/sync-data
+    volumes:
+      # 命名卷持久化密文，容器重建不丢数据
+      - sync-data:/app/sync-data
+
+volumes:
+  sync-data:
