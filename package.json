@@ -2,13 +2,16 @@
   "name": "health-manager-sync",
   "version": "1.0.0",
   "private": true,
-  "description": "健康管家端到端加密云同步后端（哑存储，仅保存密文，零依赖 Node 服务）",
+  "description": "健康管家端到端加密云同步后端（哑存储，仅保存密文）。支持 Vercel Serverless / Docker / Railway / Render 一键部署。",
   "main": "sync-server.js",
   "scripts": {
     "start": "node sync-server.js"
   },
+  "dependencies": {
+    "@vercel/kv": "^3.0.0"
+  },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "license": "MIT"
 }
